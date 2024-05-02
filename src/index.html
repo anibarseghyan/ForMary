@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find Closer Number</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f1f1f8;
+        }
+        h2 {
+            color: #11113c;
+        }
+        label, input, button {
+            margin: 10px 0;
+            width: 100%;
+            color: #11113c;
+        }
+        input, button {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #2C2C96; /* Changed background color */
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #003366; /* Darker shade on hover */
+        }
+        #result {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9e9f4;
+            color: #11113c;
+            border: 1px solid #4141a0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Find Closer Number</h2>
+
+<label for="givenNumber">Enter your number:</label>
+<input type="number" id="givenNumber" step="any">
+
+<label for="minValue">Enter the minimum value:</label>
+<input type="number" id="minValue" step="any">
+
+<label for="maxValue">Enter the maximum value:</label>
+<input type="number" id="maxValue" step="any">
+
+<button onclick="findCloserNumber()">Submit</button>
+
+<p id="result"></p>
+
+<script>
+    function findCloserNumber() {
+        var givenNumber = parseFloat(document.getElementById('givenNumber').value);
+        var minValue = parseFloat(document.getElementById('minValue').value);
+        var maxValue = parseFloat(document.getElementById('maxValue').value);
+
+        var diffToMin = Math.abs(givenNumber - minValue);
+        var diffToMax = Math.abs(givenNumber - maxValue);
+
+        var resultText;
+        if (diffToMin < diffToMax) {
+            resultText = "Your given number " + givenNumber + " is closer to the minimum value " + minValue;
+        } else if (diffToMax < diffToMin) {
+            resultText = "Your given number " + givenNumber + " is closer to the maximum value " + maxValue;
+        } else {
+            resultText = "Your given number " + givenNumber + " is equidistant from both the minimum value " + minValue + " and the maximum value " + maxValue;
+        }
+
+        var resultDiv = document.getElementById('result');
+        resultDiv.innerText = resultText;
+        resultDiv.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
